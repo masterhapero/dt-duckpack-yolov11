@@ -1,8 +1,8 @@
-name: "<PROJECT_NAME_HERE>"
+name: dt-duckpack-yolov11
 maintainer:
-    name: "<YOUR_FULL_NAME>"
-    email: "<YOUR_EMAIL_ADDRESS>"
-description: "<PROJECT_DESCRIPTION_HERE>"
-version: 0.0.0
+    name: "Sampsa Ranta"
+    email: "sampsa.ranta@gmail.com"
+description: "Yolov11 demonstration"
+version: 1.0.0
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 icon: square
