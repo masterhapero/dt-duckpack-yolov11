@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+    <name>yolo_node</name>
+    <version>1.0.0</version>
+    <description>DTPS-based yolov11 node</description>
+
+    <author email="sampsa.ranta@gmail.com">Sampsa Ranta</author>
+    <maintainer email="sampsa.ranta@gmail.com">Sampsa Ranta</maintainer>
+
+    <license>Duckietown License</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>duckietown_msgs</build_depend>
+    <build_depend>rospy</build_depend>
+    <build_depend>std_msgs</build_depend>
+
+    <run_depend>duckietown_msgs</run_depend>
+    <run_depend>rospy</run_depend>
+    <run_depend>std_msgs</run_depend>
+
+    <export>
+    </export>
+</package>

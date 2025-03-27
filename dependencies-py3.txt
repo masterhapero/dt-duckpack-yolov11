@@ -1,1 +1,5 @@
 # LIST YOUR PYTHON3 PACKAGES HERE
+
+ultralytics
+numpy==1.23.5
+

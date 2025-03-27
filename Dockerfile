@@ -66,6 +66,30 @@ ENV DT_PROJECT_NAME="${PROJECT_NAME}" \
     DT_PROJECT_LAUNCHERS_PATH="${PROJECT_LAUNCHERS_PATH}" \
     DT_LAUNCHER="${LAUNCHER}"
 
+## From ultralytics Dockerfile with small additions:
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    git python3-libnvinfer libopenmpi-dev libopenblas-base libomp-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Download onnxruntime-gpu 1.8.0 and tensorrt 8.2.0.6
+# Other versions can be seen in https://elinux.org/Jetson_Zoo and https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048
+ADD https://nvidia.box.com/shared/static/gjqofg7rkg97z3gc8jeyup6t8n9j8xjw.whl onnxruntime_gpu-1.8.0-cp38-cp38-linux_aarch64.whl
+ADD https://forums.developer.nvidia.com/uploads/short-url/hASzFOm9YsJx6VVFrDW1g44CMmv.whl tensorrt-8.2.0.6-cp38-none-linux_aarch64.whl
+
+RUN python3 -m pip install uv
+RUN uv pip install --system \
+    onnxruntime_gpu-1.8.0-cp38-cp38-linux_aarch64.whl \
+    tensorrt-8.2.0.6-cp38-none-linux_aarch64.whl \
+    https://github.com/ultralytics/assets/releases/download/v0.0.0/torch-1.11.0a0+gitbc2c6ed-cp38-cp38-linux_aarch64.whl \
+    https://github.com/ultralytics/assets/releases/download/v0.0.0/torchvision-0.12.0a0+9b5a3fe-cp38-cp38-linux_aarch64.whl
+
+#RUN uv pip install --system -e ".[export]"
+
+RUN rm -rf *.whl
+
 # install apt dependencies
 COPY ./dependencies-apt.txt "${PROJECT_PATH}/"
 RUN dt-apt-install ${PROJECT_PATH}/dependencies-apt.txt
